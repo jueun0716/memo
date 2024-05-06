@@ -1,4 +1,4 @@
-function displaMemo(memo) {
+function displayMemo(memo) {
   const ul = document.querySelector("#memo-ul");
   const li = document.createElement("li");
   li.innerText = `[id:${memo.id}] ${memo.content}`;
@@ -10,10 +10,10 @@ async function readMemo() {
   const jsonRes = await res.json();
   const ul = document.querySelector("#memo-ul");
   ul.innerHTML = "";
-  jsonRes.forEach(displaMemo);
+  jsonRes.forEach(displayMemo);
 }
 
-async function creativeMemo(value) {
+async function createMemo(value) {
   const res = await fetch("/memos", {
     method: "POST",
     headers: {
@@ -25,18 +25,16 @@ async function creativeMemo(value) {
       content: value,
     }),
   });
-  //const jsonRes = await res.json();
   readMemo();
 }
 
 function handleSubmit(event) {
   event.preventDefault();
   const input = document.querySelector("#memo-input");
-  creativeMemo(input.value);
+  createMemo(input.value);
   input.value = "";
 }
 
 const form = document.querySelector("#memo-form");
 form.addEventListener("submit", handleSubmit);
-
 readMemo();

@@ -11,7 +11,7 @@ memos = []
 app = FastAPI()
 
 @app.post("/memos")
-def create_memo(memo):
+def create_memo(memo:Memo):
     memos.append(memo)
     return '메모 추가 성공 했습니다.'
 
